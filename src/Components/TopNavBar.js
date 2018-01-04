@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { Link } from "react-router-dom"
 
 import { Menu, Container, Icon } from "semantic-ui-react"
 
@@ -15,23 +16,23 @@ class TopNavBar extends Component {
           </Menu.Item>
           <Menu.Item>
             <Icon name="empty heart" />
-            Services Health
+            <Link to="/">Services Health</Link>
           </Menu.Item>
           <Menu.Item>
             <Icon name="meh" />
-            Automation Lanucher
+            <Link to="/auto">Automation Lanucher</Link>
           </Menu.Item>
           <Menu.Item>
             <Icon name="frown" />
-            Project Status
+            <Link to="/gannt">Project Status</Link>
           </Menu.Item>
           <Menu.Item>
             <Icon name="mixcloud" />
-            Air Quality Index
+            <Link to="/air">Air Quality Index</Link>
           </Menu.Item>
           <Menu.Item>
             <Icon name="mail" />
-            About And Contact
+            <Link to="/about">About And Contact</Link>
           </Menu.Item>
         </Container>
       </Menu>

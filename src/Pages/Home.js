@@ -1,7 +1,8 @@
 import React, { Component } from "react"
+import { connect } from "react-redux"
 import { Header, Icon, Container, Grid } from "semantic-ui-react"
 
-import Service, { serviceList } from "../Components/Service"
+import Service from "../Components/Service"
 
 const styles = {
   marginTop: "2rem",
@@ -10,6 +11,7 @@ const styles = {
 
 class Home extends Component {
   render() {
+    const { services } = this.props
     return (
       <Container>
         <Header as="h2" icon textAlign="center" style={styles}>
@@ -18,8 +20,8 @@ class Home extends Component {
         </Header>
 
         <Grid stackable columns={4}>
-          {serviceList.map(i => (
-            <Grid.Column>
+          {services.map(i => (
+            <Grid.Column key={i.name}>
               <Service
                 key={i.name}
                 icon={i.icon}
@@ -37,4 +39,10 @@ class Home extends Component {
   }
 }
 
-export default Home
+function mapStateToProps({ services }) {
+  return {
+    services: services
+  }
+}
+
+export default connect(mapStateToProps, null)(Home)

@@ -1,16 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component } from "react"
 
-import { Chart } from 'react-google-charts'
+import { Chart } from "react-google-charts"
 
 class ExampleChart extends Component {
   constructor(props) {
     super(props)
     this.chartEvents = [
       {
-        eventName: 'select',
+        eventName: "select",
         callback(Chart) {
           // Returns Chart so you can access props and  the ChartWrapper object from chart.wrapper
-          console.log('Selected ', Chart.chart.getSelection())
+          // console.log('Selected ', Chart.chart.getSelection())
         }
       }
     ]
@@ -18,19 +18,19 @@ class ExampleChart extends Component {
       options: {},
       rows: [
         [
-          'r01',
-          'assets managment system',
-          'yaniwang@redhat.com',
+          "r01",
+          "assets managment system",
+          "yaniwang@redhat.com",
           null,
           null,
           this.daysToMilliseconds(5),
           15,
-          'r02'
+          "r02"
         ],
         [
-          'r02',
-          'new google sheet export script',
-          'yaniwang@redhat.com',
+          "r02",
+          "new google sheet export script",
+          "yaniwang@redhat.com",
           null,
           new Date(2018, 0, 5),
           null,
@@ -39,14 +39,14 @@ class ExampleChart extends Component {
         ]
       ],
       columns: [
-        { id: 'Task ID', type: 'string' },
-        { id: 'Task Name', type: 'string' },
-        { id: 'Resource ID ', type: 'string' },
-        { id: 'Start Date', type: 'date' },
-        { id: 'End Date', type: 'date' },
-        { id: 'Duration', type: 'number' },
-        { id: 'Percent Complete', type: 'number' },
-        { id: 'Dependencies', type: 'string' }
+        { id: "Task ID", type: "string" },
+        { id: "Task Name", type: "string" },
+        { id: "Resource ID ", type: "string" },
+        { id: "Start Date", type: "date" },
+        { id: "End Date", type: "date" },
+        { id: "Duration", type: "number" },
+        { id: "Percent Complete", type: "number" },
+        { id: "Dependencies", type: "string" }
       ]
     }
   }

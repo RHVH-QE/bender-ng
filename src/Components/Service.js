@@ -2,23 +2,6 @@ import React, { Component } from "react"
 
 import { Card, Icon, Header } from "semantic-ui-react"
 
-const serviceList = [
-  {
-    icon: "github",
-    name: "Github Repo",
-    status: true,
-    desc: "Github organization which holds all source code",
-    link: "https://github.com/orgs/RHVH-QE/dashboard"
-  },
-  {
-    icon: "tree",
-    name: "Ansible Tower",
-    status: false,
-    desc: "Front UI and execuation tools for ansible playbooks",
-    link: ""
-  }
-]
-
 class Service extends Component {
   getStatusIcon = status =>
     status ? "checkmark box green large" : "remove circle outline red"
@@ -54,5 +37,4 @@ class Service extends Component {
   }
 }
 
-export { serviceList }
 export default Service
