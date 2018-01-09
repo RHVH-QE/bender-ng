@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 
-import { Chart } from "react-google-charts"
+// import { Chart } from "react-google-charts"
 
 class ExampleChart extends Component {
   constructor(props) {
@@ -56,16 +56,17 @@ class ExampleChart extends Component {
 
   render() {
     return (
-      <Chart
-        chartType="Gantt"
-        rows={this.state.rows}
-        columns={this.state.columns}
-        options={this.state.options}
-        graph_id="ScatterChart"
-        width="100%"
-        height="400px"
-        chartEvents={this.chartEvents}
-      />
+      // <Chart
+      //   chartType="Gantt"
+      //   rows={this.state.rows}
+      //   columns={this.state.columns}
+      //   options={this.state.options}
+      //   graph_id="ScatterChart"
+      //   width="100%"
+      //   height="400px"
+      //   chartEvents={this.chartEvents}
+      // />
+      <h1>Gannt</h1>
     )
   }
 }

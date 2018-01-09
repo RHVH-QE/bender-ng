@@ -31,7 +31,7 @@ class TopNavBar extends Component {
             <Link to="/air">Air Quality Index</Link>
           </Menu.Item>
           <Menu.Item>
-            <Icon name="mail" />
+            <Icon name="mail outline" />
             <Link to="/about">About And Contact</Link>
           </Menu.Item>
         </Container>
