@@ -1,5 +1,5 @@
 function parseTestTier(val) {
-  let v = parseInt(val)
+  let v = parseInt(val, 10)
   let ret = []
   let mapper = {
     2: "ANACONDA_TIER1",

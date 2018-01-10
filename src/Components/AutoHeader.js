@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { Link } from "react-router-dom"
 import { Header, Icon, Button } from "semantic-ui-react"
 
 const styles = {
@@ -24,7 +25,7 @@ class AutoHeader extends Component {
                 IDLE
               </Button>
               <Button size="huge" basic color="green">
-                Lanuch Test
+                <Link to="/auto/launch">Lanuch Test</Link>
               </Button>
             </Button.Group>
           ) : (

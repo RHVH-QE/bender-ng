@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import { Header, Icon, Grid } from "semantic-ui-react"
+import { Header, Icon, Grid, Message } from "semantic-ui-react"
 
 import Service from "../Components/Service"
 
@@ -15,13 +15,17 @@ class Home extends Component {
     return (
       <div>
         <Header as="h2" icon textAlign="center" style={styles}>
-          <Icon name="settings" />
+          <Icon name="home" />
           <Header.Content>RHVH Team Automation Related Services</Header.Content>
         </Header>
 
         <Grid stackable columns={4}>
           {services.length === 0 ? (
-            <h1>Wrong</h1>
+            <Message
+              error
+              header="There was some errors when fetch services status"
+              list={["connection lost", "try later"]}
+            />
           ) : (
             services.map(i => (
               <Grid.Column key={i.name}>

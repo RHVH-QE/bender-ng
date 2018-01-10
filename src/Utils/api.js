@@ -17,3 +17,19 @@ export function fetchAutoLogs() {
     resp.json()
   )
 }
+
+export function fetchCurrentGitBranch() {
+  return fetch(`${zoidberg_api}/git/branch`, headers).then(resp => resp.text())
+}
+
+export function fetchPxeProfiles() {
+  return fetch(`${zoidberg_api}/pxe/profiles`, headers).then(resp =>
+    resp.json()
+  )
+}
+
+export function fetchRhvhBuilds() {
+  return fetch(`${zoidberg_api}/rhvh_builds/4`, headers).then(resp =>
+    resp.json()
+  )
+}

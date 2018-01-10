@@ -1,13 +1,21 @@
 import React, { Component } from "react"
+// import { Button } from "semantic-ui-react"
 import { connect } from "react-redux"
-import { fetchAutoStatusAsync, fetchAutoLogsAsync } from "../Actions"
+import {
+  fetchAutoStatusAsync,
+  fetchAutoLogsAsync,
+  startBackgroundSync,
+  stopBackgroundSync
+} from "../Actions"
 import AutoHeader from "../Components/AutoHeader"
 import AutoStatus from "../Components/AutoStatus"
 
 class Auto extends Component {
   componentDidMount() {
-    this.props.fetchAutoStatusAsync()
-    this.props.fetchAutoLogsAsync()
+    this.props.startBackgroundSync()
+  }
+  componentWillUnmount() {
+    this.props.stopBackgroundSync()
   }
   render() {
     return (
@@ -16,17 +24,21 @@ class Auto extends Component {
         <AutoStatus
           autoStatus={this.props.autoStatus}
           autoLogs={this.props.autoLogs}
+          gitBranch={this.props.gitBranch}
         />
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ autoStatus, autoLogs }) => ({
+const mapStateToProps = ({ autoStatus, autoLogs, gitBranch }) => ({
   autoStatus: autoStatus,
-  autoLogs: autoLogs
+  autoLogs: autoLogs,
+  gitBranch: gitBranch
 })
 export default connect(mapStateToProps, {
   fetchAutoStatusAsync,
-  fetchAutoLogsAsync
+  fetchAutoLogsAsync,
+  startBackgroundSync,
+  stopBackgroundSync
 })(Auto)
