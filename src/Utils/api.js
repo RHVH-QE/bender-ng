@@ -1,6 +1,7 @@
 const headers = { mode: "cors" }
 const api_url = "http://10.73.73.23:7788"
 const zoidberg_api = "http://10.73.73.23:5000/api/v1"
+const debug_url = "http://10.66.8.150:5000/api/v1"
 
 export function fetchServicesList() {
   return fetch(`${api_url}/conf.json`, headers).then(resp => resp.json())
@@ -33,3 +34,13 @@ export function fetchRhvhBuilds() {
     resp.json()
   )
 }
+
+export function launchAutoInstall(opts) {
+  console.log(opts)
+  return fetch(`${debug_url}/autojob/lanuch`, {
+    method: "post",
+    body: JSON.stringify(opts)
+  }).then(resp => console.log(resp.status))
+}
+
+export function launchAutoUpgrade() {}

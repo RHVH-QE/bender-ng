@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { Form } from "semantic-ui-react"
+import * as API from "../Utils/api"
 
 const options = [
   { key: "m", text: "Male", value: "male" },
@@ -12,7 +13,9 @@ class AutoInstallConfig extends Component {
     builds: ""
   }
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
-  handleSubmit = () => {}
+  handleSubmit = () => {
+    API.launchAutoInstall(this.state)
+  }
   render() {
     const { pxe, builds } = this.props
     return (
