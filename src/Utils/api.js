@@ -36,11 +36,10 @@ export function fetchRhvhBuilds() {
 }
 
 export function launchAutoInstall(opts) {
-  console.log(opts)
   return fetch(`${debug_url}/autojob/lanuch`, {
     method: "post",
     body: JSON.stringify(opts)
-  }).then(resp => console.log(resp.status))
+  }).then(resp => resp.ok)
 }
 
 export function launchAutoUpgrade() {}

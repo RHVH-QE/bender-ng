@@ -2,24 +2,21 @@ import React, { Component } from "react"
 import { Form } from "semantic-ui-react"
 import * as API from "../Utils/api"
 
-const options = [
-  { key: "m", text: "Male", value: "male" },
-  { key: "f", text: "Female", value: "female" }
-]
-
 class AutoInstallConfig extends Component {
   state = {
     pxe: "",
     builds: ""
   }
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
-  handleSubmit = () => {
-    API.launchAutoInstall(this.state)
+  handleSubmit = h => {
+    API.launchAutoInstall(this.state).then(
+      resp => (resp ? h.push("/auto") : h.push("/"))
+    )
   }
   render() {
-    const { pxe, builds } = this.props
+    const { pxe, builds, history, options } = this.props
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <Form onSubmit={() => this.handleSubmit(history)}>
         <Form.Group widths="equal">
           <Form.Select
             name="pxe"
@@ -41,7 +38,7 @@ class AutoInstallConfig extends Component {
             name="tier"
             label="Select Test Tier"
             options={options}
-            placeholder="select pxe profile from the list"
+            placeholder="select test tier from the list below"
             onChange={this.handleChange}
           />
         </Form.Group>

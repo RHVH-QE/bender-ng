@@ -21,11 +21,13 @@ class Home extends Component {
 
         <Grid stackable columns={4}>
           {services.length === 0 ? (
-            <Message
-              error
-              header="There was some errors when fetch services status"
-              list={["connection lost", "try later"]}
-            />
+            <Grid.Row centered>
+              <Message
+                error
+                header="There was some errors when fetch services status"
+                list={["connection lost", "try later"]}
+              />
+            </Grid.Row>
           ) : (
             services.map(i => (
               <Grid.Column key={i.name}>

@@ -11,9 +11,18 @@ const styles = {
   marginBottom: "2.5rem"
 }
 
+const autoInstallTiers = [
+  { key: "1", text: "DEBUG_TIER", value: 1 },
+  { key: "2", text: "ANACONDA_TIER1", value: 2 },
+  { key: "3", text: "ANACONDA_TIER2", value: 4 },
+  { key: "4", text: "KS_TIER1", value: 8 },
+  { key: "5", text: "KS_TIER2", value: 16 },
+  { key: "6", text: "VDSM_TIER1", value: 128 }
+]
+
 class AutoLaunch extends Component {
   render() {
-    const { testType, pxeProfiles, rhvhBuilds } = this.props
+    const { testType, pxeProfiles, rhvhBuilds, history } = this.props
     const pxe = pxeProfiles.map(p => ({ key: p, text: p, value: p }))
     const builds = rhvhBuilds.map(b => ({ key: b, text: b, value: b }))
 
@@ -35,12 +44,11 @@ class AutoLaunch extends Component {
               <AutoInstallConfig
                 pxe={pxe}
                 builds={builds}
+                history={history}
+                options={autoInstallTiers}
               />
             ) : (
-              <AutoUpgradeConfig
-                pxe={pxe}
-                builds={builds}
-              />
+              <AutoUpgradeConfig pxe={pxe} builds={builds} history={history} />
             )}
           </Segment>
         </Segment.Group>
