@@ -1,37 +1,45 @@
 import React, { Component } from "react"
 import { Form } from "semantic-ui-react"
 
-const styles = {
-  marginTop: "5rem"
-}
-
 const options = [
   { key: "m", text: "Male", value: "male" },
   { key: "f", text: "Female", value: "female" }
 ]
 
 class AutoInstallConfig extends Component {
+  state = {
+    pxe: "",
+    builds: ""
+  }
+  handleChange = (e, { name, value }) => this.setState({ [name]: value })
+  handleSubmit = () => {}
   render() {
     const { pxe, builds } = this.props
     return (
-      <Form>
+      <Form onSubmit={this.handleSubmit}>
         <Form.Group widths="equal">
           <Form.Select
+            name="pxe"
             label="Pxe Profile"
-            options={pxe.map(p => ({ key: p, text: p, value: p }))}
+            options={pxe}
             placeholder="select pxe profile from the list"
+            onChange={this.handleChange}
           />
           <Form.Select
+            name="builds"
             label="RHVH Builds"
-            options={builds.map(b => ({ key: b, text: b, value: b }))}
+            options={builds}
             placeholder="select the test build from the list"
+            onChange={this.handleChange}
           />
         </Form.Group>
         <Form.Group widths="2">
           <Form.Select
+            name="tier"
             label="Select Test Tier"
             options={options}
             placeholder="select pxe profile from the list"
+            onChange={this.handleChange}
           />
         </Form.Group>
         <Form.Button positive size="large">
@@ -42,9 +50,4 @@ class AutoInstallConfig extends Component {
   }
 }
 
-const mapStateToProps = ({ autoStatus, autoLogs, gitBranch }) => ({
-  autoStatus: autoStatus,
-  autoLogs: autoLogs,
-  gitBranch: gitBranch
-})
 export default AutoInstallConfig

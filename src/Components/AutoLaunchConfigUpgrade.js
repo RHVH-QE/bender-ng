@@ -1,10 +1,6 @@
 import React, { Component } from "react"
 import { Form } from "semantic-ui-react"
 
-const styles = {
-  marginTop: "5rem"
-}
-
 const options = [
   { key: "m", text: "Male", value: "male" },
   { key: "f", text: "Female", value: "female" }
@@ -12,13 +8,13 @@ const options = [
 
 class AutoUpgradeConfig extends Component {
   render() {
-    const value = {}
+    const { pxe, builds } = this.props
     return (
       <Form>
         <Form.Group widths="equal">
           <Form.Select
             label="Pxe Profile"
-            options={options}
+            options={pxe}
             placeholder="select pxe profile from the list"
           />
           <Form.Select
@@ -30,7 +26,7 @@ class AutoUpgradeConfig extends Component {
         <Form.Group widths="2">
           <Form.Select
             label="From GA Build"
-            options={options}
+            options={builds}
             placeholder="select pxe profile from the list"
           />
           <Form.Select

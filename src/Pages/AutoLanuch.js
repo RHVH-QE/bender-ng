@@ -13,7 +13,10 @@ const styles = {
 
 class AutoLaunch extends Component {
   render() {
-    const { testType } = this.props
+    const { testType, pxeProfiles, rhvhBuilds } = this.props
+    const pxe = pxeProfiles.map(p => ({ key: p, text: p, value: p }))
+    const builds = rhvhBuilds.map(b => ({ key: b, text: b, value: b }))
+
     return (
       <div>
         <Header as="h2" icon textAlign="center" style={styles}>
@@ -30,13 +33,13 @@ class AutoLaunch extends Component {
           <Segment padded="very">
             {testType === "auto_install" ? (
               <AutoInstallConfig
-                pxe={this.props.pxeProfiles}
-                builds={this.props.rhvhBuilds}
+                pxe={pxe}
+                builds={builds}
               />
             ) : (
               <AutoUpgradeConfig
-                pxe={this.props.pxeProfiles}
-                builds={this.props.rhvhBuilds}
+                pxe={pxe}
+                builds={builds}
               />
             )}
           </Segment>
