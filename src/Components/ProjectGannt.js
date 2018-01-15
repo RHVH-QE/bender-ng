@@ -17,6 +17,6 @@ class ProjectGannt extends Component {
 }
 
 export const iframe =
-  '<iframe src="http://10.73.73.23:7788/rhvh_auto.html" width="1200" height="600"></iframe>'
+  '<iframe src="http://10.73.73.23:7788/rhvh_auto.html" width="100%" height="600"></iframe>'
 
 export default ProjectGannt

@@ -22,7 +22,7 @@ class AutoStatus extends Component {
           <Table basic="very" striped>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell width="two">Name</Table.HeaderCell>
+                <Table.HeaderCell width="three">Name</Table.HeaderCell>
                 <Table.HeaderCell>Value</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
