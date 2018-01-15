@@ -25,7 +25,9 @@ import {
   FETCH_PXE_PROFILES,
   FETCH_PXE_PROFILES_ASYNC,
   FETCH_RHVH_BUILD,
-  FETCH_RHVH_BUILD_ASYNC
+  FETCH_RHVH_BUILD_ASYNC,
+  FETCH_LAST_JOB_RESULT,
+  FETCH_LAST_JOB_RESULT_ASYNC
 } from "../Actions"
 
 function* fetchService() {
@@ -105,6 +107,14 @@ function* watchFetchRhvhBuilds() {
   yield takeLatest(FETCH_RHVH_BUILD_ASYNC, fetchRhvhBuilds)
 }
 
+function* fetchLastJobResult() {
+  const result = yield call(API.fetchLastJobResult)
+  yield put({ type: FETCH_LAST_JOB_RESULT, result })
+}
+function* watchFetchLastJobResult() {
+  yield takeLatest(FETCH_LAST_JOB_RESULT_ASYNC, fetchLastJobResult)
+}
+
 // root saga
 export default function* rootSaga() {
   yield all([
@@ -114,6 +124,7 @@ export default function* rootSaga() {
     watchFetchGitb(),
     watchFetchPxeProfiles(),
     watchFetchRhvhBuilds(),
+    watchFetchLastJobResult(),
     watchPolling()
   ])
 }

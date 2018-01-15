@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom"
 import "semantic-ui-css/semantic.min.css"
 
 import RootContainer from "./Containers/RootContainer"
-import ExampleChart from "./Components/Gannt"
+import ProjectGannt, { iframe } from "./Components/ProjectGannt"
 import TopNavBar from "./Components/TopNavBar"
 
 import Home from "./Pages/Home"
@@ -24,7 +24,11 @@ class App extends Component {
               path="/auto/launch"
               render={({ history }) => <AutoLaunch history={history} />}
             />
-            <Route exact path="/gannt" component={ExampleChart} />
+            <Route
+              exact
+              path="/gannt"
+              render={() => <ProjectGannt iframe={iframe} />}
+            />
           </Switch>
         </RootContainer>
       </div>

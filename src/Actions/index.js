@@ -27,6 +27,9 @@ export const ADD_UPGRADE_TASK = "ADD_UPGRADE_TASK"
 export const RM_UPGRADE_TASK = "RM_UPGRADE_TASK"
 export const CLEAR_UPGRADE_TASK_QUEUE = "CLEAR_UPGRADE_TASK_QUEUE"
 
+export const FETCH_LAST_JOB_RESULT = "FETCH_LAST_JOB_RESULT"
+export const FETCH_LAST_JOB_RESULT_ASYNC = "FETCH_LAST_JOB_RESULT_ASYNC"
+
 // actions creators
 export const fetchService = service => ({ type: FETCH_SERVICE, service })
 export const fetchServiceAsync = () => ({ type: FETCH_SERVICE_ASYNC })
@@ -69,3 +72,11 @@ export const rmUpgradeTask = task => ({
   task
 })
 export const clearUpgradeTaskQueue = () => ({ type: CLEAR_UPGRADE_TASK_QUEUE })
+
+export const fetchLastJobResult = result => ({
+  type: FETCH_LAST_JOB_RESULT,
+  result
+})
+export const fetchLastJobResultAsync = () => ({
+  type: FETCH_LAST_JOB_RESULT_ASYNC
+})

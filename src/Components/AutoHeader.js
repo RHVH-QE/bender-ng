@@ -19,7 +19,7 @@ class AutoHeader extends Component {
         <Icon name="object group" />
 
         <Header.Content>
-          {this.props.autoStatus.running ? (
+          {!this.props.autoStatus.running ? (
             <Button.Group style={styles.btnGroup}>
               <Button size="huge" color="green">
                 IDLE

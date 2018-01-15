@@ -25,7 +25,7 @@ export function parseStatus(val) {
     pxe: cb_profile,
     host: Object.keys(hosts).join(" || "),
     tier: parseTestTier(test_level),
-    running: running === "0" ? true : false
+    running: running === "0" ? false : true
   }
 }
 
@@ -68,7 +68,8 @@ export const rhvh4GABuilds = [
   "redhat-virtualization-host-4.1-20170808.0",
   "redhat-virtualization-host-4.1-20170816.2",
   "redhat-virtualization-host-4.1-20171002.0",
-  "redhat-virtualization-host-4.1-20171101.0"
+  "redhat-virtualization-host-4.1-20171101.0",
+  "redhat-virtualization-host-4.1-20171207.0"
 ].map(x => ({ key: x, text: x, value: x }))
 
 export function uuidv4() {

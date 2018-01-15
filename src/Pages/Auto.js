@@ -5,7 +5,8 @@ import {
   fetchAutoStatusAsync,
   fetchAutoLogsAsync,
   startBackgroundSync,
-  stopBackgroundSync
+  stopBackgroundSync,
+  fetchLastJobResultAsync
 } from "../Actions"
 import AutoHeader from "../Components/AutoHeader"
 import AutoStatus from "../Components/AutoStatus"
@@ -14,31 +15,49 @@ class Auto extends Component {
   componentDidMount() {
     this.props.startBackgroundSync()
   }
+
   componentWillUnmount() {
     this.props.stopBackgroundSync()
   }
+
   render() {
+    const {
+      autoStatus,
+      autoLogs,
+      gitBranch,
+      lastJobResult,
+      fetchLastJobResultAsync
+    } = this.props
     return (
       <div>
-        <AutoHeader autoStatus={this.props.autoStatus} />
+        <AutoHeader autoStatus={autoStatus} />
         <AutoStatus
-          autoStatus={this.props.autoStatus}
-          autoLogs={this.props.autoLogs}
-          gitBranch={this.props.gitBranch}
+          autoStatus={autoStatus}
+          autoLogs={autoLogs}
+          gitBranch={gitBranch}
+          lastResult={lastJobResult}
+          fetchResult={fetchLastJobResultAsync}
         />
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ autoStatus, autoLogs, gitBranch }) => ({
+const mapStateToProps = ({
+  autoStatus,
+  autoLogs,
+  gitBranch,
+  lastJobResult
+}) => ({
   autoStatus: autoStatus,
   autoLogs: autoLogs,
-  gitBranch: gitBranch
+  gitBranch: gitBranch,
+  lastJobResult: lastJobResult
 })
 export default connect(mapStateToProps, {
   fetchAutoStatusAsync,
   fetchAutoLogsAsync,
   startBackgroundSync,
-  stopBackgroundSync
+  stopBackgroundSync,
+  fetchLastJobResultAsync
 })(Auto)

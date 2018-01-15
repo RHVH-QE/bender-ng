@@ -57,3 +57,9 @@ export function launchAutoUpgrade(opts) {
     body: JSON.stringify(opts)
   }).then(resp => resp.ok)
 }
+
+export function fetchLastJobResult() {
+  return fetch(`${zoidberg_api}/autojob/last_result`, headers).then(resp =>
+    resp.json()
+  )
+}

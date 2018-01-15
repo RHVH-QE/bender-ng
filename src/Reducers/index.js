@@ -10,7 +10,8 @@ import {
   FETCH_PXE_PROFILES,
   ADD_UPGRADE_TASK,
   RM_UPGRADE_TASK,
-  CLEAR_UPGRADE_TASK_QUEUE
+  CLEAR_UPGRADE_TASK_QUEUE,
+  FETCH_LAST_JOB_RESULT
 } from "../Actions"
 
 function services(state = [], action) {
@@ -89,6 +90,14 @@ function upgradeTaskQueue(state = [], action) {
   }
 }
 
+function lastJobResult(state = {}, action) {
+  let { result } = action
+  if (action.type === FETCH_LAST_JOB_RESULT) {
+    return { ...result }
+  }
+  return state
+}
+
 export default combineReducers({
   services,
   autoStatus,
@@ -98,5 +107,6 @@ export default combineReducers({
   pxeProfiles,
   rhvhBuilds,
   upgradeTaskQueue,
+  lastJobResult,
   routing: routerReducer
 })
