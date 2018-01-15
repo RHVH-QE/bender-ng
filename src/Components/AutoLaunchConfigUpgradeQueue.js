@@ -5,6 +5,7 @@ import * as API from "../Utils/api"
 class AutoUpgradeConfigQueue extends Component {
   handleSubmit = h => {
     const { taskQueue, clearQueue } = this.props
+    taskQueue.map(x => delete x.id && x)
     API.launchAutoUpgrade(taskQueue).then(resp => {
       if (resp) {
         clearQueue()

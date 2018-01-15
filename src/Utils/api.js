@@ -1,7 +1,7 @@
 const headers = { mode: "cors" }
 const api_url = "http://10.73.73.23:7788"
 const zoidberg_api_prod = "http://10.73.73.23:5000/api/v1"
-const zoidberg_api_debug = "http://10.66.8.150:5000/api/v1"
+// const zoidberg_api_debug = "http://10.66.8.150:5000/api/v1"
 const zoidberg_api = zoidberg_api_prod
 
 export function fetchServicesList() {
@@ -48,7 +48,7 @@ export function launchAutoInstall(opts) {
 }
 
 export function launchAutoUpgrade(opts) {
-  return fetch(`${zoidberg_api_debug}/upgradejob/lanuch`, {
+  return fetch(`${zoidberg_api}/upgradejob/lanuch`, {
     headers: {
       Accept: "application/json, text/plain, */*",
       "Content-Type": "application/json"

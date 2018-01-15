@@ -12,13 +12,9 @@ class AutoInstallConfig extends Component {
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
   handleSubmit = h => {
-    if (Object.values(this.state).includes(null)) {
-      console.log("wrong")
-    } else {
-      API.launchAutoInstall(this.state).then(
-        resp => (resp ? h.push("/auto") : h.push("/"))
-      )
-    }
+    API.launchAutoInstall(this.state).then(
+      resp => (resp ? h.push("/auto") : h.push("/"))
+    )
   }
 
   render() {

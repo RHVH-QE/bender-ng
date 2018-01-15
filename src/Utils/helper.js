@@ -49,8 +49,8 @@ export const autoInstallTiers = [
 ]
 
 export const autoUpgradeTiers = [
-  { key: "7", text: "Upgrade Tier01", value: 32 },
-  { key: "8", text: "Upgrade Tier02", value: 64 }
+  { key: "7", text: "Upgrade Tier01", value: "32" },
+  { key: "8", text: "Upgrade Tier02", value: "64" }
 ]
 
 export const rhvh4GABuilds = [
