@@ -38,3 +38,44 @@ export function parseLogs(val) {
     log: log
   }
 }
+
+export const autoInstallTiers = [
+  { key: "1", text: "DEBUG_TIER", value: 1 },
+  { key: "2", text: "ANACONDA_TIER1", value: 2 },
+  { key: "3", text: "ANACONDA_TIER2", value: 4 },
+  { key: "4", text: "KS_TIER1", value: 8 },
+  { key: "5", text: "KS_TIER2", value: 16 },
+  { key: "6", text: "VDSM_TIER1", value: 128 }
+]
+
+export const autoUpgradeTiers = [
+  { key: "7", text: "Upgrade Tier01", value: 32 },
+  { key: "8", text: "Upgrade Tier02", value: 64 }
+]
+
+export const rhvh4GABuilds = [
+  "redhat-virtualization-host-4.1-20170421.0",
+  "redhat-virtualization-host-4.1-20170202.0",
+  "redhat-virtualization-host-4.0-20170307.1",
+  "redhat-virtualization-host-4.0-20160201.0",
+  "redhat-virtualization-host-4.0-20160104.1",
+  "redhat-virtualization-host-4.0-20161116.1",
+  "redhat-virtualization-host-4.0-20160919.0",
+  "redhat-virtualization-host-4.0-20160817.0",
+  "redhat-virtualization-host-4.1-20170522.0",
+  "redhat-virtualization-host-4.1-20170616.0",
+  "redhat-virtualization-host-4.1-20170706.0",
+  "redhat-virtualization-host-4.1-20170808.0",
+  "redhat-virtualization-host-4.1-20170816.2",
+  "redhat-virtualization-host-4.1-20171002.0",
+  "redhat-virtualization-host-4.1-20171101.0"
+].map(x => ({ key: x, text: x, value: x }))
+
+export function uuidv4() {
+  return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+    (
+      c ^
+      (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+    ).toString(16)
+  )
+}

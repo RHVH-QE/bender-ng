@@ -4,15 +4,23 @@ import * as API from "../Utils/api"
 
 class AutoInstallConfig extends Component {
   state = {
-    pxe: "",
-    builds: ""
+    pxe: null,
+    build: null,
+    tslevel: null,
+    target_build: null
   }
+
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
   handleSubmit = h => {
-    API.launchAutoInstall(this.state).then(
-      resp => (resp ? h.push("/auto") : h.push("/"))
-    )
+    if (Object.values(this.state).includes(null)) {
+      console.log("wrong")
+    } else {
+      API.launchAutoInstall(this.state).then(
+        resp => (resp ? h.push("/auto") : h.push("/"))
+      )
+    }
   }
+
   render() {
     const { pxe, builds, history, options } = this.props
     return (
@@ -26,7 +34,7 @@ class AutoInstallConfig extends Component {
             onChange={this.handleChange}
           />
           <Form.Select
-            name="builds"
+            name="build"
             label="RHVH Builds"
             options={builds}
             placeholder="select the test build from the list"
@@ -34,8 +42,10 @@ class AutoInstallConfig extends Component {
           />
         </Form.Group>
         <Form.Group widths="2">
-          <Form.Select
-            name="tier"
+          <Form.Dropdown
+            multiple
+            selection
+            name="tslevel"
             label="Select Test Tier"
             options={options}
             placeholder="select test tier from the list below"

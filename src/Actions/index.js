@@ -23,6 +23,10 @@ export const FETCH_PXE_PROFILES_ASYNC = "FETCH_PXE_PROFILES_ASYNC"
 export const FETCH_RHVH_BUILD = "FETCH_RHVH_BUILD"
 export const FETCH_RHVH_BUILD_ASYNC = "FETCH_RHVH_BUILD_ASYNC"
 
+export const ADD_UPGRADE_TASK = "ADD_UPGRADE_TASK"
+export const RM_UPGRADE_TASK = "RM_UPGRADE_TASK"
+export const CLEAR_UPGRADE_TASK_QUEUE = "CLEAR_UPGRADE_TASK_QUEUE"
+
 // actions creators
 export const fetchService = service => ({ type: FETCH_SERVICE, service })
 export const fetchServiceAsync = () => ({ type: FETCH_SERVICE_ASYNC })
@@ -55,3 +59,13 @@ export const fetchRhvhBuilds = rhvhBuilds => ({
   rhvhBuilds
 })
 export const fetchRhvhBuildsAsync = () => ({ type: FETCH_RHVH_BUILD_ASYNC })
+
+export const addUpgradeTask = task => ({
+  type: ADD_UPGRADE_TASK,
+  task
+})
+export const rmUpgradeTask = task => ({
+  type: RM_UPGRADE_TASK,
+  task
+})
+export const clearUpgradeTaskQueue = () => ({ type: CLEAR_UPGRADE_TASK_QUEUE })

@@ -1,28 +1,35 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { Segment, Header, Icon } from "semantic-ui-react"
-import { selectTestTypeSync } from "../Actions"
+import {
+  selectTestTypeSync,
+  addUpgradeTask,
+  rmUpgradeTask,
+  clearUpgradeTaskQueue
+} from "../Actions"
 import AutoLaunchType from "../Components/AutoLaunchType"
 import AutoInstallConfig from "../Components/AutoLaunchConfigInstall"
 import AutoUpgradeConfig from "../Components/AutoLaunchConfigUpgrade"
+import AutoLaunchConfigUpgradeQueue from "../Components/AutoLaunchConfigUpgradeQueue"
+import { autoInstallTiers, autoUpgradeTiers } from "../Utils/helper"
 
 const styles = {
   marginTop: "2rem",
   marginBottom: "2.5rem"
 }
 
-const autoInstallTiers = [
-  { key: "1", text: "DEBUG_TIER", value: 1 },
-  { key: "2", text: "ANACONDA_TIER1", value: 2 },
-  { key: "3", text: "ANACONDA_TIER2", value: 4 },
-  { key: "4", text: "KS_TIER1", value: 8 },
-  { key: "5", text: "KS_TIER2", value: 16 },
-  { key: "6", text: "VDSM_TIER1", value: 128 }
-]
-
 class AutoLaunch extends Component {
   render() {
-    const { testType, pxeProfiles, rhvhBuilds, history } = this.props
+    const {
+      testType,
+      pxeProfiles,
+      rhvhBuilds,
+      history,
+      upgradeTaskQueue,
+      addUpgradeTask,
+      rmUpgradeTask,
+      clearUpgradeTaskQueue
+    } = this.props
     const pxe = pxeProfiles.map(p => ({ key: p, text: p, value: p }))
     const builds = rhvhBuilds.map(b => ({ key: b, text: b, value: b }))
 
@@ -48,7 +55,22 @@ class AutoLaunch extends Component {
                 options={autoInstallTiers}
               />
             ) : (
-              <AutoUpgradeConfig pxe={pxe} builds={builds} history={history} />
+              <AutoUpgradeConfig
+                pxe={pxe}
+                builds={builds}
+                options={autoUpgradeTiers}
+                addTask={addUpgradeTask}
+              />
+            )}
+          </Segment>
+          <Segment padded="very">
+            {testType !== "auto_install" && (
+              <AutoLaunchConfigUpgradeQueue
+                taskQueue={upgradeTaskQueue}
+                rmTask={rmUpgradeTask}
+                clearQueue={clearUpgradeTaskQueue}
+                history={history}
+              />
             )}
           </Segment>
         </Segment.Group>
@@ -57,9 +79,20 @@ class AutoLaunch extends Component {
   }
 }
 
-const mapStateToProps = ({ testType, pxeProfiles, rhvhBuilds }) => ({
+const mapStateToProps = ({
+  testType,
+  pxeProfiles,
+  rhvhBuilds,
+  upgradeTaskQueue
+}) => ({
   testType: testType,
   pxeProfiles: pxeProfiles,
-  rhvhBuilds: rhvhBuilds
+  rhvhBuilds: rhvhBuilds,
+  upgradeTaskQueue: upgradeTaskQueue
 })
-export default connect(mapStateToProps, { selectTestTypeSync })(AutoLaunch)
+export default connect(mapStateToProps, {
+  selectTestTypeSync,
+  addUpgradeTask,
+  rmUpgradeTask,
+  clearUpgradeTaskQueue
+})(AutoLaunch)

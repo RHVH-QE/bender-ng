@@ -7,7 +7,10 @@ import {
   FETCH_GITB,
   SELECT_TEST_TYPE_SYNC,
   FETCH_RHVH_BUILD,
-  FETCH_PXE_PROFILES
+  FETCH_PXE_PROFILES,
+  ADD_UPGRADE_TASK,
+  RM_UPGRADE_TASK,
+  CLEAR_UPGRADE_TASK_QUEUE
 } from "../Actions"
 
 function services(state = [], action) {
@@ -66,6 +69,26 @@ function rhvhBuilds(state = [], action) {
   return state
 }
 
+function upgradeTaskQueue(state = [], action) {
+  let { task } = action
+  switch (action.type) {
+    case ADD_UPGRADE_TASK:
+      return state.concat(task)
+    case RM_UPGRADE_TASK:
+      let new_state = []
+      state.forEach(x => {
+        if (x.id !== task.id) {
+          new_state.push(x)
+        }
+      })
+      return new_state
+    case CLEAR_UPGRADE_TASK_QUEUE:
+      return []
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   services,
   autoStatus,
@@ -74,5 +97,6 @@ export default combineReducers({
   testType,
   pxeProfiles,
   rhvhBuilds,
+  upgradeTaskQueue,
   routing: routerReducer
 })
