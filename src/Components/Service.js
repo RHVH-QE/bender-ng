@@ -4,7 +4,7 @@ import { Card, Icon, Header } from "semantic-ui-react"
 
 class Service extends Component {
   getStatusIcon = status =>
-    status ? "checkmark box green large" : "remove circle outline red"
+    status ? "checkmark box green large" : "remove red large"
   getBtn = status =>
     status ? "ui button compact primary" : "ui button compact red disabled"
 

@@ -80,3 +80,46 @@ export function uuidv4() {
     ).toString(16)
   )
 }
+
+export function genHighChartConfig(cityName, data) {
+  if (data.length === 0) {
+    return {}
+  }
+  let t = data[0].reverse()
+  let p = data[2].map(parseFloat).reverse()
+  let c = data[1].map(parseFloat).reverse()
+
+  return {
+    credits: {
+      enabled: false
+    },
+    title: {
+      text: data[0][0] + " " + cityName + " AQI is  " + data[2][0]
+    },
+    subtitle: {
+      text: "Current Conc is " + data[1][0]
+    },
+    xAxis: {
+      categories: t
+    },
+    yAxis: {
+      title: {
+        text: "Air Index"
+      }
+    },
+    series: [
+      {
+        name: "PM2.5",
+        color: "#FF0000",
+        data: p,
+        type: "line"
+      },
+      {
+        name: "Conc",
+        color: "#000000",
+        data: c,
+        type: "column"
+      }
+    ]
+  }
+}

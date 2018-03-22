@@ -27,7 +27,9 @@ import {
   FETCH_RHVH_BUILD,
   FETCH_RHVH_BUILD_ASYNC,
   FETCH_LAST_JOB_RESULT,
-  FETCH_LAST_JOB_RESULT_ASYNC
+  FETCH_LAST_JOB_RESULT_ASYNC,
+  FETCH_LOG_SUMMARY,
+  FETCH_LOG_SUMMARY_ASYNC
 } from "../Actions"
 
 function* fetchService() {
@@ -115,6 +117,14 @@ function* watchFetchLastJobResult() {
   yield takeLatest(FETCH_LAST_JOB_RESULT_ASYNC, fetchLastJobResult)
 }
 
+function* fetchLogSummary() {
+  const logs = yield call(API.fetchLogSummary)
+  yield put({ type: FETCH_LOG_SUMMARY, logs })
+}
+function* watchFetchLogSummary() {
+  yield takeLatest(FETCH_LOG_SUMMARY_ASYNC, fetchLogSummary)
+}
+
 // root saga
 export default function* rootSaga() {
   yield all([
@@ -125,6 +135,7 @@ export default function* rootSaga() {
     watchFetchPxeProfiles(),
     watchFetchRhvhBuilds(),
     watchFetchLastJobResult(),
+    watchFetchLogSummary(),
     watchPolling()
   ])
 }

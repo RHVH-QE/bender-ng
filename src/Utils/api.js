@@ -63,3 +63,9 @@ export function fetchLastJobResult() {
     resp.json()
   )
 }
+
+export function fetchLogSummary() {
+  return fetch(`${zoidberg_api}/logs/summary`, headers).then(resp =>
+    resp.json()
+  )
+}

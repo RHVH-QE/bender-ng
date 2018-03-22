@@ -1,6 +1,10 @@
 import React, { Component } from "react"
 import { Segment, Table, Button, Statistic } from "semantic-ui-react"
 
+const styles = {
+  color: "white"
+}
+
 class AutoStatus extends Component {
   render() {
     const { fetchResult, lastResult } = this.props
@@ -40,6 +44,30 @@ class AutoStatus extends Component {
         <Segment padded>
           <Button primary size="small" compact onClick={fetchResult}>
             Get Last Job Result
+          </Button>
+
+          {Object.keys(lastResult).length !== 0 && (
+            <Button primary size="small" compact>
+              <a
+                href={lastResult.sum.log_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={styles}
+              >
+                Review Last Job Full Logs
+              </a>
+            </Button>
+          )}
+
+          <Button positive size="small" floated="right" compact>
+            <a
+              href="http://10.73.73.23:7788"
+              target="_blank"
+              style={styles}
+              rel="noopener noreferrer"
+            >
+              Review All Logs
+            </a>
           </Button>
         </Segment>
 

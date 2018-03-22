@@ -11,7 +11,8 @@ import {
   ADD_UPGRADE_TASK,
   RM_UPGRADE_TASK,
   CLEAR_UPGRADE_TASK_QUEUE,
-  FETCH_LAST_JOB_RESULT
+  FETCH_LAST_JOB_RESULT,
+  FETCH_LOG_SUMMARY
 } from "../Actions"
 
 function services(state = [], action) {
@@ -98,6 +99,14 @@ function lastJobResult(state = {}, action) {
   return state
 }
 
+function logSummary(state = {}, action) {
+  let { logs } = action
+  if (action.type === FETCH_LOG_SUMMARY) {
+    return { ...logs }
+  }
+  return state
+}
+
 export default combineReducers({
   services,
   autoStatus,
@@ -108,5 +117,6 @@ export default combineReducers({
   rhvhBuilds,
   upgradeTaskQueue,
   lastJobResult,
+  logSummary,
   routing: routerReducer
 })

@@ -9,6 +9,7 @@ import TopNavBar from "./Components/TopNavBar"
 import Home from "./Pages/Home"
 import Auto from "./Pages/Auto"
 import AutoLaunch from "./Pages/AutoLaunch"
+import AirIndex from "./Pages/AirIndex"
 
 class App extends Component {
   render() {
@@ -29,6 +30,7 @@ class App extends Component {
               path="/gannt"
               render={() => <ProjectGannt iframe={iframe} />}
             />
+            <Route exact path="/air" render={() => <AirIndex />} />
           </Switch>
         </RootContainer>
       </div>

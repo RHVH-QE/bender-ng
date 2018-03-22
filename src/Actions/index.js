@@ -30,6 +30,9 @@ export const CLEAR_UPGRADE_TASK_QUEUE = "CLEAR_UPGRADE_TASK_QUEUE"
 export const FETCH_LAST_JOB_RESULT = "FETCH_LAST_JOB_RESULT"
 export const FETCH_LAST_JOB_RESULT_ASYNC = "FETCH_LAST_JOB_RESULT_ASYNC"
 
+export const FETCH_LOG_SUMMARY = "FETCH_LOG_SUMMARY"
+export const FETCH_LOG_SUMMARY_ASYNC = "FETCH_LOG_SUMMARY_ASYNC"
+
 // actions creators
 export const fetchService = service => ({ type: FETCH_SERVICE, service })
 export const fetchServiceAsync = () => ({ type: FETCH_SERVICE_ASYNC })
@@ -80,3 +83,9 @@ export const fetchLastJobResult = result => ({
 export const fetchLastJobResultAsync = () => ({
   type: FETCH_LAST_JOB_RESULT_ASYNC
 })
+
+export const fetchLogSummary = logs => ({
+  type: FETCH_LOG_SUMMARY,
+  logs
+})
+export const fetchLogSummaryAsync = () => ({ type: FETCH_LOG_SUMMARY_ASYNC })
