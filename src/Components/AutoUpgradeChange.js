@@ -4,7 +4,8 @@ import * as api from '../Utils/api'
 
 class UpgradeChanger extends Component {
   state = {
-    changing: false
+    changing: false,
+    targetName: this.props.targetName
   }
 
   cleanBuildName = name => {
@@ -13,18 +14,20 @@ class UpgradeChanger extends Component {
 
   handleChange = (event, data) => {
     let result = window.confirm(`change target to [[ ${data.value} ]] ?`)
+    let name = data.value
     if (result) {
       this.setState({ changing: true })
       api.changeUpgradeRpm(this.props.name, data.value).then(data => {
         window.alert(data)
         this.setState({ changing: false })
+        this.setState({targetName: this.cleanBuildName(name)})
       })
     }
   }
 
   render() {
-    const { name, desc, targetName, baseUrl, rpms } = this.props
-    const { changing } = this.state
+    const { name, desc, baseUrl, rpms } = this.props
+    const { changing, targetName } = this.state
 
     return (
       <Card raised fluid>

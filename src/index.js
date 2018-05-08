@@ -5,7 +5,7 @@ import { createStore, applyMiddleware, compose } from "redux"
 import { Provider } from "react-redux"
 import { syncHistoryWithStore } from "react-router-redux"
 import reducer from "./Reducers"
-import { BrowserRouter } from "react-router-dom"
+import { HashRouter } from "react-router-dom"
 import { createBrowserHistory } from "history"
 import rootSaga from "./Sagas"
 import App from "./App"
@@ -23,9 +23,9 @@ sagaMiddleware.run(rootSaga)
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter histroy={history}>
+    <HashRouter histroy={history}>
       <App />
-    </BrowserRouter>
+    </HashRouter>
   </Provider>,
   document.getElementById("root")
 )
