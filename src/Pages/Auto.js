@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-// import { Button } from "semantic-ui-react"
+import { Dimmer, Loader, Segment } from "semantic-ui-react"
 import { connect } from "react-redux"
 import {
   fetchAutoStatusAsync,
@@ -30,14 +30,26 @@ class Auto extends Component {
     } = this.props
     return (
       <div>
-        <AutoHeader autoStatus={autoStatus} />
-        <AutoStatus
-          autoStatus={autoStatus}
-          autoLogs={autoLogs}
-          gitBranch={gitBranch}
-          lastResult={lastJobResult}
-          fetchResult={fetchLastJobResultAsync}
-        />
+        {Object.keys(autoStatus).length === 0 ? (
+          <div>
+            <Segment>
+              <Dimmer active inverted>
+                <Loader inverted content='Loading' />
+              </Dimmer>
+            </Segment>
+          </div>
+        ) : (
+            <div>
+              <AutoHeader autoStatus={autoStatus} />
+              <AutoStatus
+                autoStatus={autoStatus}
+                autoLogs={autoLogs}
+                gitBranch={gitBranch}
+                lastResult={lastJobResult}
+                fetchResult={fetchLastJobResultAsync}
+              />
+            </div>
+          )}
       </div>
     )
   }
