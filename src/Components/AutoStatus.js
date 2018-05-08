@@ -1,8 +1,8 @@
-import React, { Component } from "react"
-import { Segment, Table, Button, Statistic } from "semantic-ui-react"
+import React, { Component } from 'react'
+import { Segment, Table, Button, Statistic } from 'semantic-ui-react'
 
 const styles = {
-  color: "white"
+  color: 'white'
 }
 
 class AutoStatus extends Component {
@@ -12,13 +12,13 @@ class AutoStatus extends Component {
     const { build, ks, log } = this.props.autoLogs
     const git = this.props.gitBranch
     const tableData = [
-      { name: "Git Branch", value: git },
-      { name: "PXE Profile", value: pxe },
-      { name: "Test Tier", value: tier },
-      { name: "Host Machine", value: host },
-      { name: "Build Name", value: build },
-      { name: "Kickstart File", value: ks },
-      { name: "Current Log", value: log }
+      { name: 'Git Branch', value: git },
+      { name: 'PXE Profile', value: pxe },
+      { name: 'Test Tier', value: tier },
+      { name: 'Host Machine', value: host },
+      { name: 'Build Name', value: build },
+      { name: 'Kickstart File', value: ks },
+      { name: 'Current Log', value: log }
     ]
     return (
       <Segment.Group raised>
@@ -46,18 +46,19 @@ class AutoStatus extends Component {
             Get Last Job Result
           </Button>
 
-          {Object.keys(lastResult).length !== 0 && (
-            <Button primary size="small" compact>
-              <a
-                href={lastResult.sum.log_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={styles}
-              >
-                Review Last Job Full Logs
-              </a>
-            </Button>
-          )}
+          {Object.keys(lastResult).length !== 0 &&
+            lastResult.sum.total !== -1 && (
+              <Button primary size="small" compact>
+                <a
+                  href={lastResult.sum.log_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={styles}
+                >
+                  Review Last Job Full Logs
+                </a>
+              </Button>
+            )}
 
           <Button positive size="small" floated="right" compact>
             <a
@@ -71,28 +72,33 @@ class AutoStatus extends Component {
           </Button>
         </Segment>
 
-        {lastResult.sum && (
-          <Segment padded>
-            <Statistic.Group>
-              <Statistic color="black">
-                <Statistic.Value>{lastResult.sum.total}</Statistic.Value>
-                <Statistic.Label>Total</Statistic.Label>
-              </Statistic>
-              <Statistic color="green">
-                <Statistic.Value>{lastResult.sum.passed}</Statistic.Value>
-                <Statistic.Label>Passed</Statistic.Label>
-              </Statistic>
-              <Statistic color="red">
-                <Statistic.Value>{lastResult.sum.failed}</Statistic.Value>
-                <Statistic.Label>Failed</Statistic.Label>
-              </Statistic>
-              <Statistic color="orange">
-                <Statistic.Value>{lastResult.sum.error}</Statistic.Value>
-                <Statistic.Label>Error</Statistic.Label>
-              </Statistic>
-            </Statistic.Group>
-          </Segment>
-        )}
+        {lastResult.sum !== undefined &&
+          lastResult.sum.total !== -1 && (
+            <Segment padded>
+              <Statistic.Group>
+                <Statistic color="black">
+                  <Statistic.Value>{lastResult.sum.total}</Statistic.Value>
+                  <Statistic.Label>Total</Statistic.Label>
+                </Statistic>
+                <Statistic color="green">
+                  <Statistic.Value>{lastResult.sum.passed}</Statistic.Value>
+                  <Statistic.Label>Passed</Statistic.Label>
+                </Statistic>
+                <Statistic color="red">
+                  <Statistic.Value>{lastResult.sum.failed}</Statistic.Value>
+                  <Statistic.Label>Failed</Statistic.Label>
+                </Statistic>
+                <Statistic color="orange">
+                  <Statistic.Value>{lastResult.sum.error}</Statistic.Value>
+                  <Statistic.Label>Error</Statistic.Label>
+                </Statistic>
+              </Statistic.Group>
+            </Segment>
+          )}
+        {lastResult.sum !== undefined &&
+          lastResult.sum.total === -1 && (
+            <Segment padded>Test run not finished yet!</Segment>
+          )}
       </Segment.Group>
     )
   }

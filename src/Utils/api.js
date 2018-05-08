@@ -1,6 +1,7 @@
-const headers = { mode: "cors" }
-const api_url = "http://10.73.73.23:7788"
-const zoidberg_api_prod = "http://10.73.73.23:5000/api/v1"
+const headers = { mode: 'cors' }
+const api_url = 'http://10.73.73.23:7788'
+const zoidberg_api_prod = 'http://10.73.73.23:5000/api/v1'
+const upgrader_api = 'http://10.66.10.22:3333/rhvh/upgrade'
 // const zoidberg_api_debug = "http://10.66.8.150:5000/api/v1"
 const zoidberg_api = zoidberg_api_prod
 
@@ -39,10 +40,10 @@ export function fetchRhvhBuilds() {
 export function launchAutoInstall(opts) {
   return fetch(`${zoidberg_api}/autojob/lanuch`, {
     headers: {
-      Accept: "application/json, text/plain, */*",
-      "Content-Type": "application/json"
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
     },
-    method: "post",
+    method: 'post',
     body: JSON.stringify(opts)
   }).then(resp => resp.ok)
 }
@@ -50,10 +51,10 @@ export function launchAutoInstall(opts) {
 export function launchAutoUpgrade(opts) {
   return fetch(`${zoidberg_api}/upgradejob/lanuch`, {
     headers: {
-      Accept: "application/json, text/plain, */*",
-      "Content-Type": "application/json"
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
     },
-    method: "post",
+    method: 'post',
     body: JSON.stringify(opts)
   }).then(resp => resp.ok)
 }
@@ -68,4 +69,19 @@ export function fetchLogSummary() {
   return fetch(`${zoidberg_api}/logs/summary`, headers).then(resp =>
     resp.json()
   )
+}
+
+export function fetchUpgradeRepos() {
+  return fetch(`${upgrader_api}/repo`, headers).then(resp => resp.json())
+}
+
+export function fetchUpgradeRpms() {
+  return fetch(`${upgrader_api}/rpms`, headers).then(resp => resp.json())
+}
+
+export function changeUpgradeRpm(repoName, targetName) {
+  return fetch(
+    `${upgrader_api}/change/${repoName}/${targetName}`,
+    headers
+  ).then(resp => resp.json())
 }

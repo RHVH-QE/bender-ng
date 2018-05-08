@@ -1,10 +1,10 @@
-import React, { Component } from "react"
-import { Link } from "react-router-dom"
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
-import { Menu, Container, Icon } from "semantic-ui-react"
+import { Menu, Container, Icon } from 'semantic-ui-react'
 
 const styles = {
-  color: "black"
+  color: 'black'
 }
 
 class TopNavBar extends Component {
@@ -30,8 +30,14 @@ class TopNavBar extends Component {
           </Menu.Item>
           <Menu.Item>
             <Icon name="frown" />
-            <Link to="/gannt" style={styles}>
-              Project Status
+            <Link to="/auto/results" style={styles}>
+              Testrun Results
+            </Link>
+          </Menu.Item>
+          <Menu.Item>
+            <Icon name="transgender" />
+            <Link to="/auto/change_upgrade" style={styles}>
+              Upgrade Target Switcher
             </Link>
           </Menu.Item>
           <Menu.Item>
