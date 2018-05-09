@@ -1,15 +1,15 @@
-import React, { Component } from "react"
-import { Dimmer, Loader, Segment } from "semantic-ui-react"
-import { connect } from "react-redux"
+import React, { Component } from 'react'
+import { Dimmer, Loader } from 'semantic-ui-react'
+import { connect } from 'react-redux'
 import {
   fetchAutoStatusAsync,
   fetchAutoLogsAsync,
   startBackgroundSync,
   stopBackgroundSync,
   fetchLastJobResultAsync
-} from "../Actions"
-import AutoHeader from "../Components/AutoHeader"
-import AutoStatus from "../Components/AutoStatus"
+} from '../Actions'
+import AutoHeader from '../Components/AutoHeader'
+import AutoStatus from '../Components/AutoStatus'
 
 class Auto extends Component {
   componentDidMount() {
@@ -32,24 +32,22 @@ class Auto extends Component {
       <div>
         {Object.keys(autoStatus).length === 0 ? (
           <div>
-            <Segment>
-              <Dimmer active inverted>
-                <Loader inverted content='Loading' />
-              </Dimmer>
-            </Segment>
+            <Dimmer active inverted>
+              <Loader inverted content="Loading" />
+            </Dimmer>
           </div>
         ) : (
-            <div>
-              <AutoHeader autoStatus={autoStatus} />
-              <AutoStatus
-                autoStatus={autoStatus}
-                autoLogs={autoLogs}
-                gitBranch={gitBranch}
-                lastResult={lastJobResult}
-                fetchResult={fetchLastJobResultAsync}
-              />
-            </div>
-          )}
+          <div>
+            <AutoHeader autoStatus={autoStatus} />
+            <AutoStatus
+              autoStatus={autoStatus}
+              autoLogs={autoLogs}
+              gitBranch={gitBranch}
+              lastResult={lastJobResult}
+              fetchResult={fetchLastJobResultAsync}
+            />
+          </div>
+        )}
       </div>
     )
   }

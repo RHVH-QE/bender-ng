@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { genHighChartConfig } from '../Utils/helper'
 import ReactHighcharts from 'react-highcharts'
-import { Segment, Button, Label } from 'semantic-ui-react'
+import { Segment, Button } from 'semantic-ui-react'
 
 const styles = {
   btn: {
@@ -46,30 +46,20 @@ class AirIndexCity extends Component {
     }
   }
 
+  summaryText = (city, index) => {}
+
   render() {
     const { airdata, show } = this.state
     const { city } = this.props
     return (
       <div>
-        <Button
-          fluid
-          size="massive"
-          basic
-          onClick={this.handleClick}
-          style={styles.btn}
-        >
-          <Label size="massive" color="blue">
-            {this.cityCName(city)}
-          </Label>
-          {airdata.length !== 0 && (
-            <Label size="massive" color="red">
-              {airdata[2][1]}
-            </Label>
-          )}
-          <Label size="massive" color="green">
-            Click For Detail
-          </Label>
-        </Button>
+        <Segment raised style={styles.btn}>
+          <Button fluid onClick={this.handleClick} color="orange">
+            <span>{this.cityCName(city)}</span>
+            &nbsp; &nbsp; &nbsp; &nbsp;
+            <span>{airdata.length !== 0 && airdata[2][1]}</span>
+          </Button>
+        </Segment>
         {show && (
           <Segment raised>
             <ReactHighcharts
