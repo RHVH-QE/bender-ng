@@ -1,14 +1,15 @@
-import React, { Component } from "react"
-import { connect } from "react-redux"
-import { Container } from "semantic-ui-react"
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Container } from 'semantic-ui-react'
 import {
   fetchServiceAsync,
   fetchRhvhBuildsAsync,
-  fetchPxeProfilesAsync
-} from "../Actions"
+  fetchPxeProfilesAsync,
+  fetchLogSummaryAsync
+} from '../Actions'
 
 const styles = {
-  width: "60%"
+  width: '60%'
 }
 
 class RootContainer extends Component {
@@ -16,6 +17,7 @@ class RootContainer extends Component {
     this.props.fetchPxeProfilesAsync()
     this.props.fetchRhvhBuildsAsync()
     this.props.fetchServiceAsync()
+    this.props.fetchLogSummaryAsync()
   }
   render() {
     return <Container style={styles}>{this.props.children}</Container>
@@ -25,5 +27,6 @@ class RootContainer extends Component {
 export default connect(null, {
   fetchServiceAsync,
   fetchPxeProfilesAsync,
-  fetchRhvhBuildsAsync
+  fetchRhvhBuildsAsync,
+  fetchLogSummaryAsync
 })(RootContainer)

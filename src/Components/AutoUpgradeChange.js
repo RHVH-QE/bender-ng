@@ -5,7 +5,8 @@ import * as api from '../Utils/api'
 class UpgradeChanger extends Component {
   state = {
     changing: false,
-    targetName: this.props.targetName
+    targetName: this.props.targetName,
+    open: false
   }
 
   cleanBuildName = name => {
@@ -20,10 +21,13 @@ class UpgradeChanger extends Component {
       api.changeUpgradeRpm(this.props.name, data.value).then(data => {
         window.alert(data)
         this.setState({ changing: false })
-        this.setState({targetName: this.cleanBuildName(name)})
+        this.setState({ targetName: this.cleanBuildName(name) })
       })
     }
   }
+
+  handleCancel = () => {}
+  handleConfirm = () => {}
 
   render() {
     const { name, desc, baseUrl, rpms } = this.props

@@ -7,10 +7,10 @@ import {
   cancel,
   take,
   fork
-} from "redux-saga/effects"
-import { delay } from "redux-saga"
-import * as API from "../Utils/api"
-import * as Helper from "../Utils/helper"
+} from 'redux-saga/effects'
+import { delay } from 'redux-saga'
+import * as API from '../Utils/api'
+import * as Helper from '../Utils/helper'
 import {
   FETCH_SERVICE,
   FETCH_SERVICE_ASYNC,
@@ -30,7 +30,7 @@ import {
   FETCH_LAST_JOB_RESULT_ASYNC,
   FETCH_LOG_SUMMARY,
   FETCH_LOG_SUMMARY_ASYNC
-} from "../Actions"
+} from '../Actions'
 
 function* fetchService() {
   const srv_list = yield call(API.fetchServicesList)
@@ -74,12 +74,12 @@ function* pollingAutoStatus() {
       yield put({ type: FETCH_AUTO_STATUS_ASYNC })
       yield put({ type: FETCH_AUTO_LOGS_ASYNC })
       yield put({ type: FETCH_GITB_ASYNC })
-      yield console.log("polling auto status")
+      yield console.log('polling auto status')
       yield delay(10000)
     }
   } finally {
     if (yield cancelled()) {
-      yield console.log("polling auto status stopped")
+      yield console.log('polling auto status stopped')
     }
   }
 }
