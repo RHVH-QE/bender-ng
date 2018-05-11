@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Header, Icon, Dimmer, Loader, Button } from 'semantic-ui-react'
+import { Header, Icon, Dimmer, Loader, Dropdown } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import Result from '../Components/AutoResults'
 
@@ -12,11 +12,21 @@ class AutoResultPage extends Component {
   state = {
     subLogSummary: 1,
     start: 0,
-    end: 1
+    end: 1,
   }
 
-  changeSkip = (start, end) => {
+  changeSkip = (start = 0, end = 1) => {
     this.setState({ start, end })
+  }
+
+  selectDate = (e, d) => {
+    let ei = Object.keys(this.props.logSummary).reverse().findIndex(e => e === d.text)
+    console.log(ei)
+    if (ei === -1) {
+      this.setState()
+    } else {
+      this.setState({ start: ei, end: ei + 1 })
+    }
   }
 
   render() {
@@ -29,35 +39,31 @@ class AutoResultPage extends Component {
           <Icon name="file text" />
           <Header.Content>Auto Test Run Results</Header.Content>
         </Header>
-        <Button.Group>
-          <Button color="green" onClick={() => this.changeSkip(0, 3)}>
-            last 3 days
-          </Button>
-          <Button.Or />
-          <Button color="blue" onClick={() => this.changeSkip(0, 7)}>
-            last week
-          </Button>
-          <Button.Or />
-          <Button color="red" onClick={() => this.changeSkip(0, 30)}>
-            last month
-          </Button>
-          <Button.Or />
-          <Button
-            color="black"
-            onClick={() => this.changeSkip(0, easylog.length)}
-          >
-            all results
-          </Button>
-        </Button.Group>
+
+        <Dropdown text='Filter Results' icon='filter' scrolling floating labeled button className='icon'>
+          <Dropdown.Menu >
+            <Dropdown.Header icon='tags' content='Filter by time span' />
+            <Dropdown.Divider />
+            <Dropdown.Item icon='circle' text='latest' onClick={() => this.changeSkip(0, 1)} />
+            <Dropdown.Item icon='circle' text='last week' onClick={() => this.changeSkip(0, 7)} />
+            <Dropdown.Item icon='circle' text='last month' onClick={() => this.changeSkip(0, 30)} />
+            <Dropdown.Header icon='tags' content='Filter by date' />
+            <Dropdown.Divider />
+            {Object.keys(logSummary).map(d => (
+              <Dropdown.Item icon='circle' text={d} key={d} onClick={this.selectDate} />
+            ))}
+          </Dropdown.Menu>
+        </Dropdown>
+
         {Object.keys(logSummary).length === 0 ? (
           <Dimmer active inverted>
             <Loader inverted content="Loading" />
           </Dimmer>
         ) : (
-          easylog
-            .slice(start, end)
-            .map(r => <Result key={r[0]} title={r[0]} data={r[1]} />)
-        )}
+            easylog
+              .slice(start, end)
+              .map(r => <Result key={r[0]} title={r[0]} data={r[1]} />)
+          )}
       </div>
     )
   }

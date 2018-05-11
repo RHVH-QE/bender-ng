@@ -4,7 +4,6 @@ import {
   Table,
   Header,
   Label,
-  Tab,
   Menu,
   Icon,
   Button
@@ -86,25 +85,25 @@ class AutoResults extends Component {
                 <Table.Cell>
                   <Menu compact size="mini">
                     <Menu.Item as="a">
-                      <Icon name="circle blue" /> total
+                      <Icon name="circle" color="blue" /> total
                       <Label color="blue" floating size="mini">
                         {row[1][1]['total']}
                       </Label>
                     </Menu.Item>
                     <Menu.Item as="a">
-                      <Icon name="check green" /> pass
+                      <Icon name="check" color="green" /> pass
                       <Label color="green" floating size="mini">
                         {row[1][1]['passed']}
                       </Label>
                     </Menu.Item>
                     <Menu.Item as="a">
-                      <Icon name="remove orange" /> fail
+                      <Icon name="remove" color="orange" /> fail
                       <Label color="orange" floating size="mini">
                         {row[1][1]['failed']}
                       </Label>
                     </Menu.Item>
                     <Menu.Item as="a">
-                      <Icon name="remove red" /> error
+                      <Icon name="remove" color="red" /> error
                       <Label color="red" floating size="mini">
                         {row[1][1]['error']}
                       </Label>
@@ -115,7 +114,6 @@ class AutoResults extends Component {
                 <Table.Cell>
                   <Button
                     compact
-                    role="a"
                     size="mini"
                     href={row[1][1]['log_url']}
                     target="_blank"
