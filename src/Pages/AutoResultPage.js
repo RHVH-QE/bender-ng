@@ -4,8 +4,10 @@ import { connect } from 'react-redux'
 import Result from '../Components/AutoResults'
 
 const styles = {
-  marginTop: '2rem',
-  marginBottom: '2.5rem'
+  header: {
+    marginTop: '2rem',
+    marginBottom: '2.5rem'
+  }
 }
 
 class AutoResultPage extends Component {
@@ -21,7 +23,6 @@ class AutoResultPage extends Component {
 
   selectDate = (e, d) => {
     let ei = Object.keys(this.props.logSummary).reverse().findIndex(e => e === d.text)
-    console.log(ei)
     if (ei === -1) {
       this.setState()
     } else {
@@ -35,14 +36,14 @@ class AutoResultPage extends Component {
     const easylog = Object.entries(logSummary).reverse()
     return (
       <div>
-        <Header as="h2" icon textAlign="center" style={styles}>
+        <Header as="h2" icon textAlign="center">
           <Icon name="file text" />
           <Header.Content>Auto Test Run Results</Header.Content>
         </Header>
 
         <Dropdown text='Filter Results' icon='filter' scrolling floating labeled button className='icon'>
           <Dropdown.Menu >
-            <Dropdown.Header icon='tags' content='Filter by time span' />
+            <Dropdown.Header icon='tags' content='Filter by time span' styles={styles.hcolor} />
             <Dropdown.Divider />
             <Dropdown.Item icon='circle' text='latest' onClick={() => this.changeSkip(0, 1)} />
             <Dropdown.Item icon='circle' text='last week' onClick={() => this.changeSkip(0, 7)} />

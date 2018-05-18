@@ -4,14 +4,17 @@ import { Link } from 'react-router-dom'
 import { Menu, Container, Icon } from 'semantic-ui-react'
 
 const styles = {
-  color: 'black'
+  color: 'black',
+  bar: {
+    width: "65%"
+  }
 }
 
 class TopNavBar extends Component {
   render() {
     return (
       <Menu className="top" stackable>
-        <Container>
+        <Container style={styles.bar}>
           <Menu.Item>
             <Icon name="bitcoin" size="large" />
             <strong>RHVH Project Portal</strong>

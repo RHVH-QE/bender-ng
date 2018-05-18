@@ -9,7 +9,7 @@ import {
 } from '../Actions'
 
 const styles = {
-  width: '60%'
+  width: '65%'
 }
 
 class RootContainer extends Component {
