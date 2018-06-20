@@ -75,7 +75,10 @@ export const rhvh4GABuilds = [
   'redhat-virtualization-host-4.1-20180410.1',
   'redhat-virtualization-host-4.1-20180426.0',
   'redhat-virtualization-host-4.2-20180104.0',
-  'redhat-virtualization-host-4.2-20180322.0'
+  'redhat-virtualization-host-4.2-20180322.0',
+  'redhat-virtualization-host-4.2-20180508.0',
+  'redhat-virtualization-host-4.2-20180518.2',
+  'redhat-virtualization-host-4.2-20180531.0'
 ].map(x => ({ key: x, text: x, value: x }))
 
 export function uuidv4() {
