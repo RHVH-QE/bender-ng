@@ -6,7 +6,7 @@ import { Menu, Container, Icon } from 'semantic-ui-react'
 const styles = {
   color: 'black',
   bar: {
-    width: "65%"
+    width: '65%'
   }
 }
 
@@ -20,7 +20,7 @@ class TopNavBar extends Component {
             <strong>RHVH Project Portal</strong>
           </Menu.Item>
           <Menu.Item>
-            <Icon name="empty heart" />
+            <Icon name="heart" />
             <Link to="/" style={styles}>
               Services Health
             </Link>
@@ -50,7 +50,7 @@ class TopNavBar extends Component {
             </Link>
           </Menu.Item>
           <Menu.Item>
-            <Icon name="mail outline" />
+            <Icon name="mail" />
             <Link to="/about" style={styles}>
               About And Contact
             </Link>
